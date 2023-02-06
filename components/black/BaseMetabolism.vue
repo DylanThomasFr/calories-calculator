@@ -1,4 +1,5 @@
 <template>
+    <Card>
     <form @submit.prevent="submitHandler" class="mt-5 flex flex-col">
         <div class="mb-6">
             <label
@@ -51,7 +52,7 @@
             >
             <input
                 type="metabolism"
-                v-model.number="baseMetabolism"
+                :value="Math.round(baseMetabolism)"
                 id="metabolism"
                 class="disabled:opacity-50 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 disabled />
@@ -64,16 +65,18 @@
             >Calculate base metabolism</button
         >
     </form>
+        </Card>
 </template>
 
 <script setup lang="ts">
+    import Card from '~/components/UI/Card.vue'
     import isNumber from 'lodash-es/isNumber'
     const weight = ref<number | null>(null)
     const height = ref<number | null>(null)
     const age = ref<number | null>(null)
 
     const emit = defineEmits<{
-        (e: 'update:baseMetabolism', value: string): void
+        (e: 'update:baseMetabolism', value: number): void
     }>()
 
     const baseMetabolism = ref<number | null>(null)
@@ -95,5 +98,6 @@
                 Math.pow(age.value as number, -0.13) *
                 1000) /
             4.18
+        emit('update:baseMetabolism', baseMetabolism.value)
     }
 </script>

@@ -3,60 +3,79 @@
         <form @submit.prevent="submitHandler" class="mt-5 flex flex-col">
             <div class="mb-6">
                 <label
-                    for="weight"
+                    for="sleep"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >Weight (Kg)</label
+                    >Sleep time</label
                 >
                 <input
                     type="text"
-                    id="weight"
-                    v-model.number="weight"
+                    id="sleep"
+                    v-model.number="sleep"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Enter your weight here..."
+                    placeholder="Enter your sleep time here..."
                     required />
             </div>
+
             <div class="mb-6">
                 <label
                     for="height"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >Height (m)</label
+                    >Sitting time</label
                 >
                 <input
                     type="text"
-                    id="height"
-                    v-model.number="height"
+                    id="sitting"
+                    v-model.number="sitting"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Enter your height here..."
-                    required />
-            </div>
-            <div class="mb-6">
-                <label
-                    for="age"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >Age</label
-                >
-                <input
-                    type="text"
-                    v-model.number="age"
-                    id="confirm_password"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Enter your age here..."
+                    placeholder="Enter your sitting time here..."
                     required />
             </div>
 
-            <div v-if="baseMetabolism !== null" class="mb-6">
+            <div class="mb-6">
                 <label
-                    for="metabolism"
+                    for="standing"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >Base metabolism</label
+                    >Standing time</label
                 >
                 <input
-                    type="metabolism"
-                    :value="Math.round(baseMetabolism)"
-                    id="metabolism"
-                    class="disabled:opacity-50 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    disabled />
+                    type="text"
+                    v-model.number="standing"
+                    id="standing"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Enter your standing time here..."
+                    required />
             </div>
+
+            <div class="mb-6">
+                <label
+                    for="slowWalking"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Slow walking time</label
+                >
+                <input
+                    type="text"
+                    v-model.number="slowWalking"
+                    id="slowWalking"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Enter your slow walking time here..."
+                    required />
+            </div>
+
+            <div class="mb-6">
+                <label
+                    for="slowWalking"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Slow walking time</label
+                >
+                <input
+                    type="text"
+                    v-model.number="slowWalking"
+                    id="slowWalking"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Enter your slow walking time here..."
+                    required />
+            </div>
+
 
             <button
                 :disabled="!valuesAreValid"

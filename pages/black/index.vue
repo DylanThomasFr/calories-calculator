@@ -3,7 +3,7 @@
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">
         Black and co calculator
     </h5>
-    <div class="flex flex-row">
+    <div class="flex flex-row ">
         <BaseMetabolism v-model:baseMetabolism="baseMetabolism"/>
         <Nap v-if="baseMetabolism !== null" />
     </div>

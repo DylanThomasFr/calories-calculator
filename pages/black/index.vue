@@ -5,18 +5,20 @@
         >
             Black and co calculator
         </h5>
-        <div class="flex flex-row justify-center">
-            <Card class="mr-6">
+        <div class="grid gap-7 grid-cols-3">
+            <Card class="h-fit">
+                <h2
+                    class="text-white mb-10 text-center"
+                    v-text="'Base metabolism'" />
                 <div class="flex flex-col">
-                    <div class="mb-6 flex flex-col">
+                    <div class="mb-6 flex flex-row items-center">
                         <b
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                        >
-                            Gender
-                        </b>
+                            class="block mr-6 text-sm font-medium text-gray-900 dark:text-white"
+                            v-text="'Gender :'"
+                        />
                         <div class="flex">
                             <div class="flex mr-6">
-                                <label class="text-white mr-2">Man</label>
+                                <label class="text-white mr-2 text-sm" v-text="'Man'" />
                                 <input
                                     type="radio"
                                     :value="0"
@@ -24,7 +26,7 @@
                                 />
                             </div>
                             <div class="flex">
-                                <label class="text-white mr-2">Woman</label>
+                                <label class="text-white mr-2 text-sm" v-text="'Woman'" />
                                 <input
                                     type="radio"
                                     :value="1"
@@ -50,8 +52,7 @@
                         <label
                             for="metabolism"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            >Base metabolism (Kcal)</label
-                        >
+                            v-text="'Base metabolism (Kcal)'" />
                         <input
                             type="metabolism"
                             :value="Math.round(baseMetabolism as number)"
@@ -64,13 +65,15 @@
             </Card>
 
             <Card>
+                <h2
+                    class="text-white mb-10 text-center"
+                    v-text="'Activity index'" />
                 <div class="flex flex-col">
                     <div class="mb-6">
                         <label
                             for="sleep"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            >Sleep time</label
-                        >
+                            v-text="'Sleep time'" />
                         <input
                             type="text"
                             id="sleep"
@@ -173,9 +176,49 @@
                             type="text"
                             :value="totalOfHours"
                             id="total"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            class="disabled:opacity-50 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             disabled
                         />
+                    </div>
+                </div>
+            </Card>
+
+            <Card>
+                <h2
+                    class="text-white mb-10 text-center"
+                    v-text="'Your nutritionon needs'" />
+                <div class="flex flex-col">
+                    <div class="mb-6 flex flex-row items-center">
+                        <b
+                            class="block mr-2 text-sm font-medium text-gray-900 dark:text-white"
+                            v-text="'Goal :'"
+                        />
+                        <div class="flex justify-between">
+                            <div class="flex items-center mr-4">
+                                <label class="text-white mr-2 text-sm" v-text="'Fat loss'" />
+                                <input
+                                    type="radio"
+                                    :value="0"
+                                    v-model.number="goal"
+                                />
+                            </div>
+                            <div class="flex items-center mr-4">
+                                <label class="text-white mr-2 text-sm" v-text="'Maintain'" />
+                                <input
+                                    type="radio"
+                                    :value="1"
+                                    v-model.number="goal"
+                                />
+                            </div>
+                            <div class="flex items-center mr-2">
+                                <label class="text-white mr-2 text-sm" v-text="'Gain weight'" />
+                                <input
+                                    type="radio"
+                                    :value="2"
+                                    v-model.number="goal"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </Card>
@@ -246,5 +289,15 @@ const totalOfHours = computed(() => {
     if (sum > 24 || sum < 0) return 'Error : Need to be between 0 and 24'
 
     return sum
+})
+
+// Result
+const goal = ref<number | null>(0)
+
+// Global
+watch(gender, async (newGender, oldGender) => {
+    if (newGender === 1) {
+        fastWalking.value = 0
+    }
 })
 </script>
